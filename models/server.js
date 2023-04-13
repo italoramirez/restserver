@@ -5,7 +5,7 @@ class Server {
     constructor () {
         this.app = express()
         this.port = process.env.PORT
-        this.usuariosPath = '/api/usuarios'
+        this.usuariosPath = '/api/user'
         //Middlewares => funciones que van a añadir otra funcionalidad
         this.middlewares()
         //routes
@@ -20,7 +20,7 @@ class Server {
     }
 
     routes () {
-        this.app.use(this.usuariosPath, require('../routes/user'))
+        this.app.use(this.usuariosPath, require('../routes/user.route'))
     }
 
     listen () {
