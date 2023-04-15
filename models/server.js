@@ -1,10 +1,15 @@
 const express = require('express')
 const cors = require('cors')
+const { dbConnection } = require('../db/config.connection')
 
 class Server {
     constructor () {
         this.app = express()
+        //port
         this.port = process.env.PORT
+        //conección db
+        this.connectionDb()
+        //route
         this.usuariosPath = '/api/user'
         //Middlewares => funciones que van a añadir otra funcionalidad
         this.middlewares()
@@ -23,6 +28,10 @@ class Server {
 
     routes () {
         this.app.use(this.usuariosPath, require('../routes/user.route'))
+    }
+
+    async connectionDb() {
+        await dbConnection()
     }
 
     listen () {
