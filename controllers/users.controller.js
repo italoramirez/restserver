@@ -28,19 +28,18 @@ const createUser = async (req, res) => {
     })
     // const user = new User(body)
     // validate mail
-    const isEmail = await User.findOne({ mail })
-    console.log(isEmail)
-    if (isEmail) {
-        return res.status(400).json({
-            error: 'El correo ya existe'
-        })
-    }
+    // const isEmail = await User.findOne({ mail })
+    // console.log(isEmail)
+    // if (isEmail) {
+    //     return res.status(400).json({
+    //         error: 'El correo ya existe'
+    //     })
+    // }
     // Encrypt pass
     const salt = bcrypt.genSaltSync()
     user.password = bcrypt.hashSync(password, salt)
 
     await user.save()
-    console.log(name, mail, password, role)
     res.status(201).json({
         user
     })
